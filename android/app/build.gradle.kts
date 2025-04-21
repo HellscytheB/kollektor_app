@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.kollektor_app"
-    compileSdk = 35 // Actualiza a la versión más reciente
+    compileSdk = 35 // Asegúrate de usar una versión compatible
 
     defaultConfig {
         applicationId = "com.example.kollektor_app"
         minSdk = 21
-        targetSdk = 35 // Actualiza a la versión más reciente
+        targetSdk = 35 // Asegúrate de usar una versión compatible
         versionCode = 1
         versionName = "1.0"
     }
