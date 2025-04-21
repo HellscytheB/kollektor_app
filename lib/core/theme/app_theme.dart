@@ -10,7 +10,7 @@ class AppTheme {
     colorScheme: ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      surface: AppColors.background, // Cambiado de background a surface
+      surface: AppColors.background, // Usar surface en lugar de background
       onPrimary: AppColors.accent,
       onSecondary: AppColors.accent,
       onSurface: AppColors.textPrimary,

@@ -28,6 +28,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  logger: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -42,7 +44,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
+    - assets/images/logo_kollektor.png
+ 
   # Fuentes personalizadas
   fonts:
     - family: Open Sans

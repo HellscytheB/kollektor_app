@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer'; // Importar dart:developer para usar log
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -35,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -46,13 +47,15 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  log('Botón Entrar presionado'); // Reemplazo de print
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFD01B59),
+                  fixedSize: const Size(200, 50), // Tamaño fijo del botón
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: const Text(
                   'Entrar',
