@@ -7,6 +7,12 @@ void main() {
   runApp(const MyApp());
 }
 
+class AppRoutes {
+  static const String splash = '/splash';
+  static const String onboarding = '/onboarding';
+  static const String login = '/login';
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -15,11 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kollektor App',
       theme: ThemeData(fontFamily: 'Open Sans'),
-      initialRoute: '/splash', // Ruta inicial
+      initialRoute: AppRoutes.splash,
       routes: {
-        '/splash': (context) => const SplashScreen(),
-        '/onboarding': (context) => const OnboardingScreen(),
-        '/login': (context) => const LoginScreen(),
+        AppRoutes.splash: (context) => const SplashScreen(),
+        AppRoutes.onboarding: (context) => const OnboardingScreen(),
+        AppRoutes.login: (context) => const LoginScreen(),
       },
     );
   }

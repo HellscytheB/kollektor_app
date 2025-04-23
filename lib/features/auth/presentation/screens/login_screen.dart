@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:developer'; // Importar dart:developer para usar log
+import 'dart:developer'; // Para usar log
+import 'package:kollektor_app/core/widgets/custom_button.dart';
+import 'package:kollektor_app/core/constants/app_colors.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -7,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF311D3F),
+      backgroundColor: AppColors.background, // Fondo desde AppColors
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -29,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: const Color(0xFF623B7A),
+                  fillColor: AppColors.secondary, // Color secundario
                   hintText: 'N Identificación',
                   hintStyle: const TextStyle(
                     fontFamily: 'Open Sans',
@@ -46,26 +48,11 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              CustomButton(
+                text: 'Entrar',
                 onPressed: () {
-                  log('Botón Entrar presionado'); // Reemplazo de print
+                  log('Botón Entrar presionado');
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFD01B59),
-                  fixedSize: const Size(200, 50), // Tamaño fijo del botón
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: const Text(
-                  'Entrar',
-                  style: TextStyle(
-                    fontFamily: 'Open Sans',
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
               ),
             ],
           ),

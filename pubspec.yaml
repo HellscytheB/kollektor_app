@@ -46,6 +46,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/images/logo_kollektor.png
+    - assets/images/logo_ankora.png
  
   # Fuentes personalizadas
   fonts:

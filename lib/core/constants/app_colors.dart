@@ -7,4 +7,5 @@ class AppColors {
   static const Color accent = Color(0xFFFFFFFF); // White
   static const Color textPrimary = Color(0xFFFFFFFF); // White
   static const Color textSecondary = Color(0xFFD01B59); // Ruby
+  static const Color shadow = Colors.black26; // Sombra con opacidad
 }

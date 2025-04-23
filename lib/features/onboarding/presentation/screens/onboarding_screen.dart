@@ -1,49 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kollektor_app/core/constants/app_colors.dart';
-
-class CustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-  final Color backgroundColor;
-  final Color textColor;
-  final double fontSize;
-  final double borderRadius;
-  final EdgeInsetsGeometry padding;
-
-  const CustomButton({
-    super.key,
-    required this.text,
-    required this.onPressed,
-    this.backgroundColor = const Color(0xFFD01B59), // Color predeterminado
-    this.textColor = Colors.white,
-    this.fontSize = 18,
-    this.borderRadius = 30,
-    this.padding = const EdgeInsets.symmetric(vertical: 16),
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-        padding: padding,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontFamily: 'Open Sans',
-          fontSize: fontSize,
-          fontWeight: FontWeight.bold,
-          color: textColor,
-        ),
-      ),
-    );
-  }
-}
+import 'package:kollektor_app/core/theme/text_styles.dart';
+import 'package:kollektor_app/core/widgets/custom_button.dart';
+import 'package:kollektor_app/features/onboarding/data/onboarding_data.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -55,25 +14,6 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-
-  final List<Map<String, String>> _onboardingData = [
-    {
-      "image": "assets/images/onboarding1.png",
-      "title": "Bienvenido a Kollektor",
-      "description": "Gestiona tu cartera de manera eficiente y organizada.",
-    },
-    {
-      "image": "assets/images/onboarding2.png",
-      "title": "Controla tus pagos",
-      "description":
-          "Lleva un registro detallado de los pagos de tus clientes.",
-    },
-    {
-      "image": "assets/images/onboarding3.png",
-      "title": "Reportes claros",
-      "description": "Obtén reportes visuales para tomar mejores decisiones.",
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -89,34 +29,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   _currentPage = index;
                 });
               },
-              itemCount: _onboardingData.length,
+              itemCount: onboardingData.length,
               itemBuilder: (context, index) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(_onboardingData[index]["image"]!, height: 250),
-                    const SizedBox(height: 20),
-                    Text(
-                      _onboardingData[index]["title"]!,
-                      style: const TextStyle(
-                        fontFamily: 'Open Sans',
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      _onboardingData[index]["description"]!,
-                      style: const TextStyle(
-                        fontFamily: 'Open Sans',
-                        fontSize: 16,
-                        color: Colors.white70,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                return OnboardingPage(
+                  image: onboardingData[index]["image"]!,
+                  title: onboardingData[index]["title"]!,
+                  description: onboardingData[index]["description"]!,
                 );
               },
             ),
@@ -124,16 +42,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
-              _onboardingData.length,
+              onboardingData.length,
               (index) => buildDot(index),
             ),
           ),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: ElevatedButton(
+            child: CustomButton(
+              text:
+                  _currentPage == onboardingData.length - 1
+                      ? "Comenzar"
+                      : "Siguiente",
               onPressed: () {
-                if (_currentPage == _onboardingData.length - 1) {
+                if (_currentPage == onboardingData.length - 1) {
                   Navigator.pushReplacementNamed(context, '/login');
                 } else {
                   _pageController.nextPage(
@@ -142,24 +64,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   );
                 }
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                fixedSize: const Size(200, 50), // Tamaño fijo del botón
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: Text(
-                _currentPage == _onboardingData.length - 1
-                    ? "Comenzar"
-                    : "Siguiente",
-                style: const TextStyle(
-                  fontFamily: 'Open Sans',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
             ),
           ),
           const SizedBox(height: 20),
@@ -177,6 +81,41 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         color: _currentPage == index ? AppColors.primary : Colors.white54,
         borderRadius: BorderRadius.circular(5),
       ),
+    );
+  }
+}
+
+class OnboardingPage extends StatelessWidget {
+  final String image;
+  final String title;
+  final String description;
+
+  const OnboardingPage({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(image, height: 250),
+        const SizedBox(height: 20),
+        Text(
+          title,
+          style: AppTextStyles.displayMedium, // Usar estilo global
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 10),
+        Text(
+          description,
+          style: AppTextStyles.bodyMedium, // Usar estilo global
+          textAlign: TextAlign.center,
+        ),
+      ],
     );
   }
 }
