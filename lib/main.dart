@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:kollektor_app/core/constants/app_routes.dart';
 import 'package:kollektor_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:kollektor_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:kollektor_app/features/splash/presentation/screens/splash_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class AppRoutes {
-  static const String splash = '/splash';
-  static const String onboarding = '/onboarding';
-  static const String login = '/login';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    ScreenUtilInit(
+      designSize: const Size(360, 690), // Tamaño base del diseño
+      builder: (context, child) => const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

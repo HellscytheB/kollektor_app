@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kollektor_app/core/theme/text_field_styles.dart';
 import 'package:kollektor_app/core/widgets/custom_button.dart';
-import 'package:kollektor_app/features/auth/presentation/screens/password_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class PasswordScreen extends StatelessWidget {
+  const PasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final double commonWidth = 350.w; // Ancho común para TextField y botón
+    final double commonWidth = 350.w;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -19,13 +18,13 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // TextField para el correo
-              SizedBox(
-                width: commonWidth,
-                child: TextField(
-                  decoration: TextFieldStyles.defaultDecoration(
-                    hintText: 'Correo electrónico',
-                  ),
+              // Título
+              Text(
+                'Introduce tu contraseña',
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
               SizedBox(height: 20.h),
@@ -37,23 +36,18 @@ class LoginScreen extends StatelessWidget {
                   decoration: TextFieldStyles.defaultDecoration(
                     hintText: 'Contraseña',
                   ),
-                  obscureText: true, // Ocultar texto para contraseñas
+                  obscureText: true,
                 ),
               ),
               SizedBox(height: 20.h),
 
-              // Botón
+              // Botón para continuar
               CustomButton(
-                text: 'Iniciar sesión',
+                text: 'Continuar',
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PasswordScreen(),
-                    ),
-                  );
+                  print('Contraseña ingresada');
                 },
-                width: commonWidth, // Usar el mismo ancho
+                width: commonWidth,
               ),
             ],
           ),

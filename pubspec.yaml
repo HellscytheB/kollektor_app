@@ -8,6 +8,7 @@ environment:
   sdk: ">=3.7.2 <4.0.0"
 
 dependencies:
+  # SDK de Flutter
   flutter:
     sdk: flutter
 
@@ -30,6 +31,13 @@ dependencies:
 
   # Logger actualizado
   logger: ^2.5.0
+
+  # Manejo de diseño responsivo
+  flutter_screenutil: ^5.5.4
+
+  # Firebase dependencies
+  firebase_core: ^2.14.0
+  cloud_firestore: ^4.10.0
 
 dev_dependencies:
   flutter_test:
